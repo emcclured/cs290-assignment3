@@ -9,8 +9,13 @@
 */
 
 function returnObjectLiteral() {
-  //your code here
-  return undefined; //Modify ONLY this line
+  var crackers = {
+  type:'Goldfish',
+  brand: 'Pepperidge Farm',
+  flavor: 'Cheddar',
+  count: 2000;
+  }
+  return this.object; //Modify ONLY this line
   //end your code
 }
 

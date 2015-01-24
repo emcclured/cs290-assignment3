@@ -12,9 +12,13 @@
 * @return {null} - 'useless'.
 */
 
-//your code here
+function uselessFunction(){
 
-//end your code
+var null = 0;
+
+return null;
+}
+
 
 var bar = 'not a function';
 var barType = typeof bar;
