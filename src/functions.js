@@ -14,8 +14,6 @@
 
 function uselessFunction(){
 
-var null = 0;
-
 return null;
 }
 
