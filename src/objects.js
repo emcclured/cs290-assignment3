@@ -9,13 +9,8 @@
 */
 
 function returnObjectLiteral() {
-  var crackers = {
-  type:'Goldfish',
-  brand: 'Pepperidge Farm',
-  flavor: 'Cheddar',
-  count: 2000;
-  }
-  return this.object; //Modify ONLY this line
+  //your code here
+  return {type:'Goldfish', brand:'Pepperidge Farm', flavor:'Cheddar', count:2000}; //Modify ONLY this line
   //end your code
 }
 
@@ -44,6 +39,58 @@ function returnObjectLiteral() {
 
 //your code here
 
+function MessageLog(user) {
+	var sentMessage = new Array(5);  // the max size of array is 5 according to the instructions
+	var sentCount = 0;	
+	var receivedCount = 0;
+	var lastReceivedMessageText;
+	
+	this.user = user;
+	this.logMessage = function (messageText, direction) {
+		// create a copy of the messageText sent in for use in
+		// function getLastReceivedMessageText
+		
+		lastReceivedMessageText = messageText;
+		
+		if (direction==0) {
+			// shift all messages in sentMessage array to the right
+			// i.e. 0 becomes 1, 1 becomes 2, 2 becomes 3, 3 becomes 4, and
+			// 4 is shifted out of array
+			
+			for (var i=4;i>0;i--) {
+					sentMessage[i] = sentMessage[i-1];		
+			}
+			
+		   // now put the message sent to position 0 of the array, i.e.
+		   // most recent
+		   
+			sentMessage[0] = messageText;
+			
+			sentCount = sentCount + 1;	
+		} else if (direction==1) {
+			receivedCount = receivedCount + 1;
+		}
+	
+	}
+	this.getSentMessage = function (n) {
+		return sentMessage[n];
+	}
+	this.totalSent = function () {
+		return sentCount.toString();
+	}
+	this.totalReceived = function () {
+		return receivedCount;
+	}
+	this.totalMessageCount = function () {
+		var totalCount = sentCount + recievedCount;
+		
+		return totalCount;
+	}
+	this.getLastReceivedMessageText = function () {
+		return lastReceivedMessageText;
+	}
+}
+
 //end your code
 
 /**
@@ -52,6 +99,10 @@ function returnObjectLiteral() {
 * received.
 */
 //your code here
+
+MessageLog.prototype.lastReceivedMessage = function() {
+	return this.getLastReceivedMessageText();
+}
 
 //end your code
 
@@ -63,4 +114,12 @@ function returnObjectLiteral() {
 
 //your code here
 
-//end your code
+// create myLog
+
+this.myLog = new MessageLog('Tester');
+
+// add messages to myLog
+
+this.myLog.logMessage('foo', 1);
+this.myLog.logMessage('bar', 1);
+this.myLog.logMessage('baz', 1);
