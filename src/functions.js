@@ -12,11 +12,13 @@
 * @return {null} - 'useless'.
 */
 
-function uselessFunction(){
+//your code here
 
-return null;
+function uselessFunction() {
+	return null;
 }
 
+//end your code
 
 var bar = 'not a function';
 var barType = typeof bar;
@@ -32,6 +34,20 @@ var barType = typeof bar;
 */
 
 //your code here
+
+bar = function (doubleArray) {
+		
+		for (var i=0;i<doubleArray.length;i++) {
+			if (typeof doubleArray[i] == 'number') {
+				doubleArray[i]=doubleArray[i]*2;
+			} else {
+				return false;
+			}
+		}
+
+		return true;
+		
+}
 
 //end your code
 
@@ -68,5 +84,45 @@ function GitLog(hash, date, message) {
 */
 
 //your code here
+
+function parseGit(logArray) {
+   // create local variables to use
+      
+   var hashString;
+   var dateString;
+   var commentString;	
+	
+	// create the toReturnGitLog Array that will be an array of GitLog(s)
+	// call the Array constructor to set the size or length of the array
+	
+	var toReturnGitLog = new Array(logArray.length);
+	
+	// walk thru the passed in logArray and parse out the individual fields
+	
+	for (var i=0;i<logArray.length;i++) {
+		 // parse out the hashString
+		 	    
+	    hashString = logArray[i].substr(0,7);
+	    
+	    // parse out the dateString
+	    
+       dateString = logArray[i].substr(8,30);
+       
+       // parse out comment.  the split command will parse out everything between
+       // the " " but will put the first part of the string into commentString[0] and
+       // place the comment in commentString[1]
+       
+       commentString = logArray[i].split('"');
+       
+       // fill out the toReturnGitLog array with the parsed out parts
+       // hashString
+       // new Date(dateString) // have to create a new Date type out of the dateString
+       // commentString[1] // the actual comment is in the commentString array in position 1
+       
+       toReturnGitLog[i] = new GitLog(hashString, new Date(dateString), commentString[1]);
+	}
+
+   return toReturnGitLog;
+}
 
 //end your code
